@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.stevdza_san_notes.ui.fragments.UpdateFragment"
-        android:label="UpdateFragment" >
+        android:label="Update Note" >
         <action
             android:id="@+id/action_updateFragment_to_homeFragment"
             app:destination="@id/homeFragment"
