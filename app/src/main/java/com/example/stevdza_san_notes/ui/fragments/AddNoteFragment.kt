@@ -7,31 +7,43 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.stevdza_san_notes.R
+import com.example.stevdza_san_notes.databinding.FragmentAddNoteBinding
 import com.example.stevdza_san_notes.room.NoteTable
 import com.example.stevdza_san_notes.ui.MainActivity
 import com.example.stevdza_san_notes.ui.NotesViewModel
-import kotlinx.android.synthetic.main.fragment_add_note.*
 
-class AddNoteFragment : Fragment(R.layout.fragment_add_note) {
+class AddNoteFragment : Fragment() {
     lateinit var viewModel: NotesViewModel
+    private var _binding:FragmentAddNoteBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentAddNoteBinding.inflate(layoutInflater,container,false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
 
-        btn.setOnClickListener{
+        binding.btn.setOnClickListener{
             AddDatatoDatabase()
             findNavController().navigate(R.id.action_addNoteFragment_to_homeFragment)
         }
     }
 
     private fun AddDatatoDatabase(){
-        val mtitle = title_et.text.toString()
-        val mbody = description_et.text.toString()
+
+        val mtitle = binding.titleEt.text.toString()
+        val mbody = binding.descriptionEt.text.toString()
 
         // create data obj
-        val NoteTable = NoteTable(0,mtitle,mbody,1)
-        viewModel.saveNote(NoteTable)
+        val noteTable = NoteTable(0,mtitle,mbody,1)
+        viewModel.saveNote(noteTable)
 
 
     }

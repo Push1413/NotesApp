@@ -7,14 +7,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.stevdza_san_notes.R
+import com.example.stevdza_san_notes.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: NotesViewModel
+    private lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupActionBarWithNavController(notesNavHostFragment.findNavController())
         viewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 

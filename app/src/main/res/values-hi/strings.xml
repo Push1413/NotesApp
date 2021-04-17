@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">दैनिक डायरी</string>
+
+    <string name="add">जोड़ना</string>
+    <string name="title">शीर्षक</string>
+    <string name="description">विवरण</string>
+
+    <string-array name="priority">
+        <item>Low Priority</item>
+        <item>Medium Priority</item>
+        <item>High Priority</item>
+    </string-array>
+</resources>

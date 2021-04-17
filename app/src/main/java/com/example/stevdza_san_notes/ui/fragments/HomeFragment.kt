@@ -1,23 +1,35 @@
 package com.example.stevdza_san_notes.ui.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import com.example.stevdza_san_notes.Adapter.NotesAdapter
 import com.example.stevdza_san_notes.R
+import com.example.stevdza_san_notes.databinding.FragmentHomeBinding
 import com.example.stevdza_san_notes.ui.MainActivity
 import com.example.stevdza_san_notes.ui.NotesViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
-    val TAG = "HomeFragment"
+class HomeFragment : Fragment() {
+    private var _binding:FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     lateinit var notesAdapter: NotesAdapter
     lateinit var viewModel: NotesViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +44,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
 
-        fab.setOnClickListener {
+        binding.fab.setOnClickListener {
 findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
 
@@ -62,7 +74,7 @@ findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
 
         ItemTouchHelper(itemTouchHelperCallback).apply {
-            attachToRecyclerView(rv)
+            attachToRecyclerView(binding.rv)
         }
 
         viewModel.getAllSavedNews().observe(viewLifecycleOwner, Observer { notes ->
@@ -72,10 +84,14 @@ findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
 
     private fun setupRecyclerView() {
         notesAdapter = NotesAdapter()
-        rv.apply {
+        binding.rv.apply {
             adapter = notesAdapter
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
