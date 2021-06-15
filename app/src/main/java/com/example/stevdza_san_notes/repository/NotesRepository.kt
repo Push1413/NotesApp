@@ -1,10 +1,13 @@
 package com.example.stevdza_san_notes.repository
 
-import androidx.lifecycle.LiveData
 import com.example.stevdza_san_notes.room.NoteDAO
-import com.example.stevdza_san_notes.room.NoteTable
+import com.example.stevdza_san_notes.room.entities.NoteTable
+import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
 
-class NotesRepository(private val notedao:NoteDAO) {
+@ViewModelScoped
+class NotesRepository  @Inject constructor(
+    private val notedao: NoteDAO) {
 
     suspend fun upsert(noteTable: NoteTable) = notedao.upsert(noteTable)
 

@@ -1,8 +1,9 @@
-package com.example.stevdza_san_notes.room
+package com.example.stevdza_san_notes.room.entities
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.stevdza_san_notes.room.data.Priority
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "Notes")
@@ -12,6 +13,5 @@ data class NoteTable (
     var id:Int = 0,
     val Title : String,
     val Body:String,
-    val priority:Int
-
+    val priority: Priority
 ):Parcelable
