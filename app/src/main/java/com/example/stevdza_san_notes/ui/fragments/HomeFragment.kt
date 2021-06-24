@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
-import com.example.stevdza_san_notes.Adapter.NotesAdapter
+import com.example.stevdza_san_notes.adapter.NotesAdapter
 import com.example.stevdza_san_notes.R
 import com.example.stevdza_san_notes.databinding.FragmentHomeBinding
 import com.example.stevdza_san_notes.ui.NotesViewModel

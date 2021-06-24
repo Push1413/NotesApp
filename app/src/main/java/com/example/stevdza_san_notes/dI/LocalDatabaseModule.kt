@@ -1,4 +1,4 @@
-package com.example.stevdza_san_notes.DI
+package com.example.stevdza_san_notes.dI
 
 import android.content.Context
 import androidx.room.Room

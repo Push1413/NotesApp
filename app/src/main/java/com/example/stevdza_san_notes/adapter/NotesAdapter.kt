@@ -1,4 +1,4 @@
-package com.example.stevdza_san_notes.Adapter
+package com.example.stevdza_san_notes.adapter
 
 import android.view.LayoutInflater
 import android.view.View
